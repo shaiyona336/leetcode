@@ -25,8 +25,8 @@ class Solution:
 
             
         
-# Example usage:
+
 solution = Solution()
-height = [0,1,0,2,1,0,1,3,2,1,2,1]
+height = [4,3,7,0,9]
 result = solution.trap(height)
-print(result)  # Output: 6
+print(result)
