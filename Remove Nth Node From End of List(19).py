@@ -13,5 +13,3 @@ class Solution:
             currNode.next = currNode.next.next
 
         return dummy.next
-
-
