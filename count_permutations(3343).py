@@ -1,48 +1,55 @@
 import math
-def CountBalancedPermutations(num):
-    countBalance = 0
-    num = str(num)
-    sumDigits = sum(int(digit) for digit in num))
-    solutions = set()
+class Solution:
+    def countBalancedPermutations(self, num: str) -> int:
+        countBalance = 0
+        num = str(num)
+        sumDigits = sum(int(digit) for digit in num)
+        solutions = set()
 
-    if sumDigits % 2 == 1:
-        return 0
+        if sumDigits % 2 == 1:
+            return 0
 
-    digitInNum = {}
-    for digit in num:
-        addNumToSet(digitInNum,digit)
+        digitInNum = {}
+        for digit in num:
+            self.addNumToSet(digitInNum,digit)
 
-    helper(num,digitInNum,sumDigits/2,math.floor(len(num)/2)+1,0,0)
-    for solution in solutions:
-        numPermutations = math.factorial(len(solution)) #num way for even indexes
-        numPermuatations += math.factorial(len(num)-len(solution))
-        countBalanace += numPermutations
+        self.helper(num,digitInNum,sumDigits/2,math.floor(len(num)/2)+1,0,0)
+        for solution in solutions:
+            numPermutations = math.factorial(len(solution)) #num way for even indexes
+            numPermuatations += math.factorial(len(num)-len(solution))
+            countBalanace += numPermutations
+        
+        return countBalance
+
     
-    return countBalance
+    def helper(self,num,digitInNum,targetSum, targetCount, currSum,currCount):#check if can get to target with 
+        if currSum > targetSum or currCount > targetCount:
+            return
 
-    
-def helper(num,digitInNum,targetSum, targetCount, currSum,currCount):#check if can get to target with 
-    if currSum > targetSum or currCount > targetCount:
-        return
+        if currSum == targetSum and currCount == targetCount:
+            numsInSolution = []
+            for digit in digitInNum:
+                for i in range(digitInNum[digit]):
+                    numsInSolution.append(digit)
+            solution.add(sorted(numsInSolution))
 
-    if currSum == targetSum and currCount == targetCount:
-        solution.add(digitInNum)
-
-    for i in range(len(n)-len(digitInNum)):
-        addNumToSet(digitInNum,num[i])
-        currCount += 1
-        currSum += num[i]
-        helper(num,digitInNum,targetSum,targetCount,currSum,currCount)
-        currSum -= num[i]
-        currCount -= 1
-        digitInNum[num[i] -= 1
-
-
-
-addNumToSet(array,value):
-    if value in array:
-        array[value] += 1
-    else:
-        array[value] = 1
+        for i in range(len(num)-len(digitInNum)):
+            self.addNumToSet(digitInNum,num[i])
+            currCount += 1
+            currSum += int(num[i])
+            self.helper(num,digitInNum,targetSum,targetCount,currSum,currCount)
+            currSum -= int(num[i])
+            currCount -= 1
+            digitInNum[num[i]] -= 1
 
 
+
+    def addNumToSet(self,array,value):
+        if value in array:
+            array[value] += 1
+        else:
+            array[value] = 1
+
+
+
+        
