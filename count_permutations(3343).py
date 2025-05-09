@@ -1,5 +1,6 @@
 import math
 def CountBalancedPermutations(num):
+    countBalance = 0
     num = str(num)
     sumDigits = sum(int(digit) for digit in num))
     solutions = set()
@@ -12,6 +13,12 @@ def CountBalancedPermutations(num):
         addNumToSet(digitInNum,digit)
 
     helper(num,digitInNum,sumDigits/2,math.floor(len(num)/2)+1,0,0)
+    for solution in solutions:
+        numPermutations = math.factorial(len(solution)) #num way for even indexes
+        numPermuatations += math.factorial(len(num)-len(solution))
+        countBalanace += numPermutations
+    
+    return countBalance
 
     
 def helper(num,digitInNum,targetSum, targetCount, currSum,currCount):#check if can get to target with 
