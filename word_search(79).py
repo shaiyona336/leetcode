@@ -7,7 +7,6 @@ class Solution:
             for j in range(len(board[0])):
                 alreadyBeen = set()
                 if self.isWord(board,word,0,j,i,len(board[0]),len(board),alreadyBeen):
-                    alreadyStarted[i][j] = True
                     return True
 
         return False
